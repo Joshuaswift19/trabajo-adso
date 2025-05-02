@@ -7,14 +7,14 @@ $tiempo_maximo_inactividad = 600;
 
 // Verificar si existe la última actividad
 if (isset($_SESSION['ultima_actividad'])) {
-  $tiempo_inactivo = time() - $_SESSION['ultima_actividad'];
-  if ($tiempo_inactivo > $tiempo_maximo_inactividad) {
-    // Destruir la sesión y redirigir al usuario a index.php
-    session_unset();
-    session_destroy();
-    header("Location: index.php");
-    exit;
-  }
+    $tiempo_inactivo = time() - $_SESSION['ultima_actividad'];
+    if ($tiempo_inactivo > $tiempo_maximo_inactividad) {
+        // Destruir la sesión y redirigir al usuario a index.php
+        session_unset();
+        session_destroy();
+        header("Location: index.php");
+        exit;
+    }
 }
 
 // Actualizar el tiempo de la última actividad
@@ -246,7 +246,7 @@ try {
                             const title = doc.querySelector('.card-title')?.textContent || 'Libro desconocido';
                             const author = doc.querySelector('.card-text.text-muted')?.textContent.replace('Por ', '') || 'Autor desconocido';
                             const description = doc.querySelector('.card-text:not(.text-muted)')?.textContent || 'Sin descripción';
-                            const image = doc.querySelector('.img-fluid')?.src || '/Uploads/img/default.png';
+                            const image = doc.querySelector('.img-fluid')?.src || '/uploads/img/default.png';
 
                             // Agregar el libro a la lista
                             if (deseadosList) {

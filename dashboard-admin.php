@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $action === 'get') {
         error_log('POST: ' . json_encode($_POST));
         error_log('FILES: ' . json_encode($_FILES));
         try {
-            $imageDir = 'Uploads/img/';
-            $fileDir = 'Uploads/documents/';
+            $imageDir = 'uploads/img/';
+            $fileDir = 'uploads/documents/';
             if (!is_dir($imageDir)) mkdir($imageDir, 0777, true);
             if (!is_dir($fileDir)) mkdir($fileDir, 0777, true);
 
