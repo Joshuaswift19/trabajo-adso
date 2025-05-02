@@ -17,7 +17,7 @@ body {
 }
 
 body::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -31,20 +31,16 @@ body::before {
 }
 
 body.login-page {
-  background-image: url('../img/11.avif');
-  
+  background-image: url("../img/11.avif");
 }
-
 
 body.register-page {
-  background-image: url('../img/14.jpg');
+  background-image: url("../img/14.jpg");
 }
-
 
 body.recover-page {
-  background-image: url('../img/Imagen de WhatsApp 2025-04-30 a las 15.19.27_2a6c2560.jpg');
+  background-image: url("../img/Imagen de WhatsApp 2025-04-30 a las 15.19.27_2a6c2560.jpg");
 }
-
 
 #userMenu {
   background-color: #e2e6ea; /* Fondo al pasar el cursor */
@@ -114,6 +110,22 @@ body.recover-page {
   display: grid;
   min-height: 100dvh;
   grid-template-rows: auto 1fr auto; /* Header, content, footer */
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Ajustes para el menú desplegable */
+.collapse.navbar-collapse {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .custom-navbar {
@@ -793,6 +805,24 @@ body.recover-page {
   }
   .libros-contenedor.filtros-abiertos {
     margin-left: 0;
+  }
+  .custom-search-bar-wrapper {
+    margin-right: 0;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+
+  .user-menu {
+    margin-top: 10px;
   }
 }
 
