@@ -1,29 +1,13 @@
 <?php
-// Parámetros de conexión
-$host = "localhost";
-$port = "5432";
-$dbname = "web";
-$user = "postgres";
-$password = "1";
-
 try {
-    // Cadena de conexión
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password";
-    
-    // Crear conexión PDO
-    $pdo = new PDO($dsn);
-    
-    // Configurar el modo de error
+    $dsn = getenv('DATABASE_URL') ?: 'pgsql:host=localhost;port=5432;dbname=web';
+    $user = getenv('PGUSER') ?: 'postgres';
+    $password = getenv('PGPASSWORD') ?: '1';
+    $pdo = new PDO($dsn, $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Elimina o comenta esta línea para evitar el mensaje
-    // echo "Conexión exitosa a la base de datos";
-    
+    error_log("Conexión a la base de datos exitosa");
 } catch (PDOException $e) {
-    // Manejo de errores
+    error_log("Error al conectar a la base de datos: " . $e->getMessage());
     echo "Error de conexión: " . $e->getMessage();
 }
-$pdo = new PDO($dsn);
-
-$pdo = new PDO("pgsql:host=localhost;dbname=web", "postgres", "1");
 ?>
