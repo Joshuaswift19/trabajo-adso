@@ -37,10 +37,10 @@ try {
                     <a class="nav-link" href="index.php">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="explorarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="explorar.php" id="explorarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Explorar
                     </a>
-                    <ul class="dropdown-menu custom-dropdown" aria-labelledby="explorarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="explorarDropdown">
                         <li><a class="dropdown-item" href="explorar.php">Todas las categorías</a></li>
                         <li><a class="dropdown-item" href="explorar.php?categoria=programacion">Programación</a></li>
                         <li><a class="dropdown-item" href="explorar.php?categoria=desarrollo_web">Desarrollo Web</a></li>
