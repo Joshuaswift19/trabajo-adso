@@ -3,3 +3,6 @@ nixPkgs = ['php83', 'php83Extensions.pdo_pgsql', 'php83Packages.composer', 'ngin
 
 [phases.install]
 cmds = ['composer install --ignore-platform-reqs']
+
+[phases.build]
+cmds = ['mkdir -p /var/log/nginx', 'mkdir -p /var/cache/nginx']
