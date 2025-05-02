@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
 
                 // Crear enlace de restablecimiento
-                $enlace = "http://192.168.1.57/trabajo-adso/reset-password.php?token=$token";
+                $enlace = "http://trabajo-adso-production.up.railway.app/reset-password.php?token=$token";
 
                 // Crear contenido HTML para el correo
                 $contenidoCorreo = "
