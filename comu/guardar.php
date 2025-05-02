@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        $pdo = new PDO("pgsql:host=localhost;dbname=web", "postgres", "1");
+        require_once '../conexion.php';
 
         $contenido = $_POST['contenido'];
         $idusuario = $_POST['idusuario'];
