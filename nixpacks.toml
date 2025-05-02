@@ -1,2 +1,2 @@
 [phases.setup]
-nixPkgs = ['php83', 'php83Packages.pdo_pgsql', 'nginx', 'nodejs_18', 'npm-9_x']
+nixPkgs = ['php83', 'php83Extensions.pdo_pgsql', 'nginx', 'nodejs_18', 'npm-9_x']
