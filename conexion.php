@@ -7,6 +7,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     error_log("Conexión a la base de datos exitosa");
 } catch (PDOException $e) {
+    $pdo = null; // ✅ para que exista aunque falle
     error_log("Error al conectar a la base de datos: " . $e->getMessage());
     echo "Error de conexión: " . $e->getMessage();
 }
