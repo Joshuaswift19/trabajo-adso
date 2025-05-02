@@ -1,6 +1,5 @@
 [phases.setup]
-nixPkgs = ['php83', 'nginx', 'nodejs_18', 'npm-9_x']
-nixPkgsExtra = ['(php83.withExtensions (exts: exts.enabled ++ [ exts.pdo_pgsql ]))', 'php83Packages.composer']
+nixPkgs = ['php83', 'php83Extensions.pdo_pgsql', 'php83Packages.composer', 'nginx', 'nodejs_18', 'npm-9_x']
 
 [phases.install]
 cmds = ['composer install --ignore-platform-reqs']
