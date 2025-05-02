@@ -4,7 +4,21 @@ try {
     if (!$dsn) {
         throw new Exception("DATABASE_URL no está configurado");
     }
-    $pdo = new PDO($dsn, null, null, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    // Registrar controladores PDO disponibles
+    $drivers = PDO::getAvailableDrivers();
+    error_log("Controladores PDO disponibles: " . implode(", ", $drivers));
+    // Registrar el DSN
+    error_log("DSN: " . $dsn);
+    // Intentar conexión con DSN parseado
+    $parsed = parse_url($dsn);
+    $host = $parsed['host'] ?? '';
+    $port = $parsed['port'] ?? '5432';
+    $dbname = ltrim($parsed['path'], '/') ?? '';
+    $user = $parsed['user'] ?? '';
+    $pass = $parsed['pass'] ?? '';
+    $pdo_dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+    error_log("PDO DSN: " . $pdo_dsn);
+    $pdo = new PDO($pdo_dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     error_log("Conexión a la base de datos exitosa");
 } catch (Exception $e) {
     $pdo = null;
