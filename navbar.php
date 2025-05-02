@@ -1,11 +1,11 @@
 <?php
+
+require_once 'conexion.php';
 // Asegurarse de que la sesión esté iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Obtener foto de perfil
-require_once 'conexion.php';
 try {
     $stmt = $pdo->prepare("SELECT foto_perfil FROM usuarios WHERE id = ?");
     $stmt->execute([$_SESSION['usuario_id'] ?? 0]);
