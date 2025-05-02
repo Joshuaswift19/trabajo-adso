@@ -3,9 +3,10 @@ session_start();
 require_once 'conexion.php';
 
 // Crear carpeta de uploads si no existe
-$upload_dir = 'assets/uploads/user-photo/';
+$upload_dir = '/app/storage/uploads/user-photo/';
 if (!is_dir($upload_dir)) {
-    mkdir($upload_dir, 0755, true);
+    mkdir($upload_dir, 0777, true); // Cambia a 0777 para asegurar permisos
+    chmod($upload_dir, 0777); // Forzar permisos
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -41,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare("SELECT foto_perfil FROM usuarios WHERE id = ?");
             $stmt->execute([$usuario_id]);
             $current_photo = $stmt->fetchColumn();
-            
+
             if ($current_photo && file_exists($current_photo)) {
                 unlink($current_photo);
             }
-            
+
             $stmt = $pdo->prepare("UPDATE usuarios SET foto_perfil = NULL WHERE id = ?");
             $stmt->execute([$usuario_id]);
-            
+
             echo json_encode(['success' => true, 'message' => 'Foto de perfil eliminada']);
         } catch (PDOException $e) {
             echo json_encode(['error' => 'Error al eliminar la foto']);
@@ -91,8 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute([$destination, $usuario_id]);
                 echo json_encode(['success' => true, 'message' => 'Foto de perfil actualizada', 'photo_url' => $destination]);
             } else {
-                echo json_encode(['error' => 'Error al mover la imagen']);
+                $error = error_get_last();
+                error_log("Error al mover la imagen: " . json_encode($error));
+                echo json_encode(['error' => 'Error al mover la imagen: ' . json_encode($error)]);
             }
+            
         } catch (PDOException $e) {
             echo json_encode(['error' => 'Error al guardar la imagen en la base de datos']);
         }
@@ -164,6 +168,7 @@ $_SESSION['ultima_actividad'] = time();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -181,10 +186,12 @@ $_SESSION['ultima_actividad'] = time();
             border-radius: 50%;
             object-fit: cover;
         }
+
         .cropper-container {
             max-width: 500px;
             margin-top: 1rem;
         }
+
         .alert-sm {
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
@@ -193,6 +200,7 @@ $_SESSION['ultima_actividad'] = time();
         }
     </style>
 </head>
+
 <body>
     <?php include 'navbar.php'; ?>
     <div class="settings-container">
@@ -313,4 +321,5 @@ $_SESSION['ultima_actividad'] = time();
     <script src="assets/js/index.js"></script>
     <script src="assets/js/passwordValidation.js"></script>
 </body>
+
 </html>
