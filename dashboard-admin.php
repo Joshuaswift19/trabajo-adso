@@ -16,16 +16,7 @@ register_shutdown_function(function () {
 
 session_start();
 
-try {
-    $pdo = new PDO('pgsql:host=localhost;port=5432;dbname=web', 'postgres', '1');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    ob_clean();
-    header('Content-Type: application/json');
-    error_log('Error de conexión: ' . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'Error de conexión: ' . $e->getMessage()]);
-    exit;
-}
+require_once 'conexion.php';
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 
