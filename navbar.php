@@ -19,62 +19,67 @@ try {
 <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
         <!-- Logo y Título -->
-        <div class="d-flex align-items-center">
+        <a class="navbar-brand fw-bold fs-4" href="index.php">
             <img src="assets/img/logo.png" alt="Logo" class="logo-img">
-            <a class="navbar-brand fw-bold fs-4" href="index.php">Adso</a>
-        </div>
+            Adso
+        </a>
 
-        <!-- Contenido del Navbar (Desktop) -->
+        <!-- Botón hamburguesa para pantallas pequeñas -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido del Navbar -->
         <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarContent">
-            <?php if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] == 1): ?>
-                <!-- Navbar para usuarios no autenticados y rol 1 -->
-                <ul class="navbar-nav custom-nav-position me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="explorarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Explorar
-                        </a>
-                        <div class="dropdown-menu custom-dropdown" aria-labelledby="explorarDropdown">
-                            <ul class="list-unstyled mb-0">
-                                <li><a class="dropdown-item" href="explorar.php">Todas las categorías</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=programacion">Programación</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=desarrollo_web">Desarrollo Web</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=desarrollo_aplicaciones">Desarrollo de Aplicaciones</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=ciberseguridad">Ciberseguridad</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=bases_datos">Bases de Datos</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=inteligencia_artificial">IA/Machine Learning</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=cloud_computing">Cloud Computing</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=devops_automatizacion">DevOps y Automatización</a></li>
-                                <li><a class="dropdown-item" href="explorar.php?categoria=diseno_ux_ui">Diseño UX/UI</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="comu/comentario.php">Comunidad</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
-                    </li>
-                </ul>
-                <div class="custom-search-bar-wrapper d-flex align-items-center position-relative">
-                    <form class="custom-search-bar" id="searchForm" action="explorar.php" method="GET">
-                        <input type="search" name="q" placeholder="Buscar libros..." class="custom-search-input" id="searchInput" autocomplete="off">
-                        <button type="submit" class="custom-search-button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                    <div class="search-suggestions" id="searchSuggestions"></div>
-                </div>
-                <a href="deseados.php" class="nav-link ms-3 d-none d-lg-block" id="navHeart">
-                    <i class="far fa-heart" style="font-size: 1.2rem; color:black;"></i>
-                </a>
-            <?php endif; ?>
+            <!-- Menú principal -->
+            <ul class="navbar-nav custom-nav-position me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Inicio</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="explorarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Explorar
+                    </a>
+                    <ul class="dropdown-menu custom-dropdown" aria-labelledby="explorarDropdown">
+                        <li><a class="dropdown-item" href="explorar.php">Todas las categorías</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=programacion">Programación</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=desarrollo_web">Desarrollo Web</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=desarrollo_aplicaciones">Desarrollo de Aplicaciones</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=ciberseguridad">Ciberseguridad</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=bases_datos">Bases de Datos</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=inteligencia_artificial">IA/Machine Learning</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=cloud_computing">Cloud Computing</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=devops_automatizacion">DevOps y Automatización</a></li>
+                        <li><a class="dropdown-item" href="explorar.php?categoria=diseno_ux_ui">Diseño UX/UI</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comu/comentario.php">Comunidad</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+            </ul>
 
+            <!-- Barra de búsqueda -->
+            <div class="custom-search-bar-wrapper d-flex align-items-center position-relative">
+                <form class="custom-search-bar" id="searchForm" action="explorar.php" method="GET">
+                    <input type="search" name="q" placeholder="Buscar libros..." class="custom-search-input" id="searchInput" autocomplete="off">
+                    <button type="submit" class="custom-search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+
+            <!-- Ícono de favoritos -->
+            <a href="deseados.php" class="nav-link ms-3 d-none d-lg-block" id="navHeart">
+                <i class="far fa-heart" style="font-size: 1.2rem; color:black;"></i>
+            </a>
+
+            <!-- Menú de usuario -->
             <div class="user-menu">
                 <?php if (isset($_SESSION['usuario_id'])): ?>
-                    <!-- Menú de usuario -->
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary rounded-circle userMenuH" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php if ($foto_perfil): ?>
@@ -106,7 +111,6 @@ try {
                         </ul>
                     </div>
                 <?php else: ?>
-                    <!-- Botones de inicio de sesión y registro -->
                     <div class="d-flex gap-3">
                         <a class="btn btn-outline-primary" href="login.php">Iniciar sesión</a>
                         <a class="btn btn-primary" href="register.php">Registrarse</a>
