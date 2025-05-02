@@ -7,8 +7,10 @@ if (!$idusuario_actual) {
     header('Location: /login.php');
     exit;
 }
+
+require_once '../conexion.php'; // Usa conexion.php
+
 try {
-    $pdo = new PDO("pgsql:host=localhost;dbname=web", "postgres", "1");
     $sql = "
         SELECT c.contenido, c.respuesta, u.nombre, c.idusuario, c.idpublicacion, u.foto_perfil
         FROM comunidad c
@@ -20,6 +22,7 @@ try {
 } catch (PDOException $e) {
     die("Error al conectar a la base de datos: " . $e->getMessage());
 }
+
 try {
     $stmt = $pdo->prepare("SELECT foto_perfil FROM usuarios WHERE id = ?");
     $stmt->execute([$_SESSION['usuario_id'] ?? 0]);
