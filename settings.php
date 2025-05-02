@@ -3,7 +3,7 @@ session_start();
 require_once 'conexion.php';
 
 // Crear carpeta de uploads si no existe
-$upload_dir = '/app/uploads/user-photo/';
+$upload_dir = 'assets/uploads/user-photo/';
 if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0755, true);
 }
